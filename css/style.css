@@ -1,0 +1,71 @@
+/* Tags styles ------------------------------------------------*/
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+
+    width: 100vw;
+    height: 100vh;
+
+    margin: 0;
+}
+form{
+    margin-bottom: 40px;
+}
+label{
+    display: block;
+    color: gray;
+}
+input{
+    width: 70%;
+    margin-right: 40px;
+    padding-left: 15px;
+    box-sizing: border-box;
+}
+p{
+    margin: 0;
+    color: gray;
+}
+li{
+    list-style: none;
+    user-select: none;
+    cursor: pointer;
+}
+li:hover{
+    background: lightcyan;
+}
+
+/* ID styles -------------------------------------------------*/
+#main{
+    width: 650px;
+    height: 600px;
+    padding: 40px;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border: 1px solid gray;
+}
+
+#control-panel{
+    display: flex;
+    gap: 40px;
+}
+
+#list-of-pairs{
+    height: 300px;
+    width: 70%;
+    border: gray 1px solid;
+    margin: 0;
+    padding: 0;
+}
+
+#control-btns{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+#btn-delete-pairs{
+    margin-top: 20px;
+}

@@ -1,0 +1,94 @@
+/* for phones & tablets*/
+@media (max-width: 1024px) {
+    body{
+        height: auto;
+    }
+
+    form{
+        order: 2;
+        height: 20vh;
+        margin-bottom: 0;
+    }
+    li{
+        border-radius: 20px;
+        padding: 0 5px;
+    }
+    li:hover{
+        background: inherit;
+    }
+
+    input{
+        width: 79vw;
+        height: 40px;
+
+        margin: 0;
+
+        border-radius: 20px;
+        border: 1px solid black;
+    }
+    form > button{
+        margin: 10px 0;
+    }
+
+    label{
+        display: flex;
+        justify-content: center;
+    }
+    
+    button {
+        width: 79vw;
+        height: 40px;
+
+        justify-content: center;
+        display: block;
+
+        border-radius: 20px;
+        border: 1px solid black;
+        background: white;
+        
+    }
+
+    #main{
+        width: 100vw;
+        height: 100vh;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        border: none;
+        padding: 0;
+    }
+    #title{
+        margin: 0;
+    }
+    #control-panel{
+        flex-direction: column;
+        transition: .5s;
+        order: 1;
+        gap: 10px;
+    }
+
+    #control-btns{
+        height: 20vh;
+        overflow: hidden;
+        transition: .5s;
+    }
+
+    #list-of-pairs{
+        width:auto;
+        height: 50vh;
+        transition: .5s;
+
+        padding: 5px;
+
+        border-radius: 20px;
+    }
+
+
+    #btn-delete-pairs{
+        margin: 0;
+    }
+
+}
