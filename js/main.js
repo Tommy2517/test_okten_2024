@@ -260,10 +260,10 @@ function set_dom_lists(array) {
 
 // btn activate block with addit. func.
 btn_addon.addEventListener('click',()=>{
-    if (block_addon.style.display === 'block') {
+    if (block_addon.style.display === 'flex') {
         block_addon.style.display = 'none'
     }else{
-        block_addon.style.display = 'block'
+        block_addon.style.display = 'flex'
         set_dom_lists(array_of_lists)
     }    
 })
