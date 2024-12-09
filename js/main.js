@@ -31,6 +31,8 @@ const list_of_pairs_dom = dom.getById('list-of-pairs');
 // get list of pairs from storage and add in dom 
 let list_of_pairs = dom.getFromStorage('list_of_pairs') || [];
 render(list_of_pairs)
+console.log(list_of_pairs);
+
 
 // get delete button from dom
 const btn_delete_pairs = dom.getById('btn-delete-pairs');
@@ -45,8 +47,7 @@ class Pair {
         this.name = name,
         this.value = value, 
         this.id = id,
-        this.status= true,
-        this.element= dom.create('li')
+        this.status= true
     }
 }
 
@@ -106,7 +107,7 @@ function filter_deleted(params) {
     params.filter(pair => {
             if(pair.status === true ) {
                 remained.push(pair)
-            }
+            }else pair.status = true
         })
     return remained
 }
@@ -182,10 +183,173 @@ input.addEventListener('blur', ()=>{
     .style.height = ''
 })
 
-// END the main task-----------------------------------------
+// END the main task ==========================================
 
 
 
-// ADDITION's -----------------------------------------------
+// ADDITION's ===============================================
+
+// elements --------------------------------------------
+
+// addon btn
+const btn_addon = dom.create('button')
+btn_addon.textContent = 'addon'
 
 
+// all buttons block (without add_btn)
+const control_btns_block = dom.getById('control-btns')
+control_btns_block.append(btn_addon)
+
+
+// block with addons
+const block_addon = document.getElementById('addon')
+
+
+// array with lists
+let array_of_lists = dom.getFromStorage('array-of-lists') || []
+
+// ul block with lists names
+const dom_array_of_lists = dom.getById('array-lists')
+
+// warning string
+const warning = dom.getById('warning')
+
+
+// get buttons control addition
+const btn_save = dom.getById('btn-save')
+const btn_load = dom.getById('btn-load')
+const btn_del = dom.getById('btn-del')
+
+// value = name saved array 
+const input_save = dom.getById('input-save')
+
+// functions -----------------------------------------------------------------
+
+// chack unic name
+function check_names(name) {
+    if (array_of_lists.find(item => item.name === name)) {
+        return true        
+    }
+    else return false
+}
+
+// create new object of list
+function set_list(list_name) {
+    return {
+        name: list_name, 
+        data: list_of_pairs,
+        id: dom.newId(),
+        status: true
+    }
+}
+
+
+// compare id lists
+function set_dom_lists(array) {
+    dom_array_of_lists.innerText = ''
+    for (const item of array) {
+        const list_of_pairs = dom.create('li')
+        list_of_pairs.id = item.id
+        list_of_pairs.textContent = item.name
+        dom_array_of_lists.append(list_of_pairs)
+    }
+}
+
+
+// listeners -----------------------------------------------------
+
+
+// btn activate block with addit. func.
+btn_addon.addEventListener('click',()=>{
+    if (block_addon.style.display === 'block') {
+        block_addon.style.display = 'none'
+    }else{
+        block_addon.style.display = 'block'
+        set_dom_lists(array_of_lists)
+    }    
+})
+
+
+// validate name for new list
+input_save.addEventListener('input',()=>{
+    if (check_names(input_save.value)) {
+        warning.innerText='name alredy exist'
+    }else {
+        warning.innerText=''
+    }
+    
+})
+
+
+// select
+dom_array_of_lists.addEventListener('click', (e) => {
+    if (e.target.tagName === 'LI') {
+        if (e.target.style.background === 'lightgreen') {
+            e.target.style.background = ''
+            array_of_lists.find(item => item.id === +e.target.id).status = true
+        }else {
+            e.target.style.background = 'lightgreen'
+            const selected = array_of_lists.find(item => item.id === +e.target.id)
+            selected.status = false
+            for (const element of array_of_lists) {
+                if (element.id !== selected.id) {
+                    element.status = true
+                }
+            }
+            for (const element of dom_array_of_lists.children) {
+                if (+element.id !== selected.id) {
+                    element.style.background = ''
+                    element.status = false
+                }
+            }
+        }
+    }
+    // console.log(dom_array_of_lists);
+    // console.log(e.target.id);
+    
+    // console.log(array_of_lists);
+    
+    
+})//--
+
+
+// save curent list of pair in array with lists and storage
+btn_save.addEventListener('click', ()=>{
+    if (input_save.value && array_of_lists.length < 5) {
+
+        if(!check_names(input_save.value)){
+            array_of_lists.push(set_list(input_save.value))      
+            
+            dom.setInStorage('array-of-lists', array_of_lists)
+            
+            set_dom_lists(array_of_lists)
+
+            input_save.value = ''
+            warning.innerText=''
+        }
+    }
+    else{
+        if (array_of_lists.length === 5) {
+            warning.innerText='limit 5 item'
+        }
+        if (!input_save.value) {
+            warning.innerText='enter name'
+        }
+    }
+})
+
+
+// delete selected lists
+btn_del.addEventListener('click', ()=>{
+    array_of_lists = filter_deleted(array_of_lists)
+    dom.setInStorage('array-of-lists', array_of_lists)
+    set_dom_lists(array_of_lists)
+})
+
+
+// load list from storage
+btn_load.addEventListener('click', ()=>{
+    list_of_pairs = array_of_lists.find(item => item.status === false).data
+    dom.setInStorage('list_of_pairs', list_of_pairs)
+    render(list_of_pairs)
+})

@@ -12,6 +12,7 @@
     li{
         border-radius: 20px;
         padding: 0 5px;
+        margin: 0;
     }
     li:hover{
         background: inherit;
@@ -91,4 +92,25 @@
         margin: 0;
     }
 
+
+
+    /* addon styles ----------------------------*/
+    #addon{
+        width: 100vw;
+    }
+    #saver{
+        width: 50%;
+    }
+
+    .btn-mini{
+        height: 20px;
+     }
+     #input-save{    
+        width: 30vw;
+        height: 30px;
+    }
+    #warning{
+        bottom: 47%;
+    }
+  
 }

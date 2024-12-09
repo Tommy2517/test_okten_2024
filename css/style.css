@@ -69,3 +69,76 @@ li:hover{
 #btn-delete-pairs{
     margin-top: 20px;
 }
+
+
+
+/* syles for addition functional */
+
+
+
+#addon {
+    width: 650px;
+    height: 200px;
+
+    border: 1px solid gray;
+    box-sizing: border-box;
+    display: none;
+    overflow: hidden;
+ }
+ #saver{
+    position: relative;
+
+    width: 25%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    
+    background: silver;
+ }
+
+
+ .addon-btns{
+    width: 100%;
+
+    display: flex;
+    justify-content: space-evenly;
+ }
+
+ .btn-mini{
+    width: 30%;
+    height: 30px;
+ }
+
+ #array-lists{
+
+    width: 90%;
+    height: 50%;
+
+    padding: 5px;
+    margin: 10px 0 0 0;
+    box-sizing: border-box;
+    
+    
+    border-radius: 20px;
+    border: 1px solid black;
+    
+}
+#warning{
+    position: absolute;
+    
+    /* content: 'name already exist'; */
+    color: red;
+    
+    bottom: 55%;
+    left: 5%;
+}
+
+#input-save{    
+    width: 10vw;
+    height: 30px;
+    margin: 0;
+}
