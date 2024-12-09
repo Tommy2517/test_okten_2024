@@ -31,7 +31,6 @@ const list_of_pairs_dom = dom.getById('list-of-pairs');
 // get list of pairs from storage and add in dom 
 let list_of_pairs = dom.getFromStorage('list_of_pairs') || [];
 render(list_of_pairs)
-console.log(list_of_pairs);
 
 
 // get delete button from dom
@@ -303,14 +302,8 @@ dom_array_of_lists.addEventListener('click', (e) => {
                 }
             }
         }
-    }
-    // console.log(dom_array_of_lists);
-    // console.log(e.target.id);
-    
-    // console.log(array_of_lists);
-    
-    
-})//--
+    } 
+})
 
 
 // save curent list of pair in array with lists and storage
@@ -318,11 +311,14 @@ btn_save.addEventListener('click', ()=>{
     if (input_save.value && array_of_lists.length < 5) {
 
         if(!check_names(input_save.value)){
-            array_of_lists.push(set_list(input_save.value))      
+            console.log(array_of_lists);
             
+            array_of_lists.push(set_list(input_save.value))   
             dom.setInStorage('array-of-lists', array_of_lists)
             
+            array_of_lists = dom.getFromStorage('array-of-lists')
             set_dom_lists(array_of_lists)
+            console.log(array_of_lists);
 
             input_save.value = ''
             warning.innerText=''
