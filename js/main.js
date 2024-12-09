@@ -311,14 +311,12 @@ btn_save.addEventListener('click', ()=>{
     if (input_save.value && array_of_lists.length < 5) {
 
         if(!check_names(input_save.value)){
-            console.log(array_of_lists);
             
             array_of_lists.push(set_list(input_save.value))   
             dom.setInStorage('array-of-lists', array_of_lists)
             
             array_of_lists = dom.getFromStorage('array-of-lists')
             set_dom_lists(array_of_lists)
-            console.log(array_of_lists);
 
             input_save.value = ''
             warning.innerText=''
